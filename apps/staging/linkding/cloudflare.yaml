@@ -47,6 +47,10 @@ spec:
       - name: creds
         secret:
           secretName: tunnel-credentials
+          - key: credentials.json
+            path: credentials.json
+          - key: cert.pem
+            path: ../cert.pem
 
       # Create a config.yaml file from the ConfigMap below.
       - name: config
