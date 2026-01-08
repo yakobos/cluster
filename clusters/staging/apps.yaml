@@ -14,5 +14,5 @@ spec:
   prune: true
   decryption:
     provider: sops
-    secretRed:
+    secretRef:
       name: sops-age
