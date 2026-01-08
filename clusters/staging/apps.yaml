@@ -12,3 +12,7 @@ spec:
     name: flux-system
   path: ./apps/staging
   prune: true
+  decryption:
+    provider: sops
+    secretRed:
+      name: sops-age
