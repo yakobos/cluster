@@ -47,6 +47,7 @@ spec:
       - name: creds
         secret:
           secretName: tunnel-credentials
+          items:
           - key: credentials.json
             path: credentials.json
           - key: cert.pem
