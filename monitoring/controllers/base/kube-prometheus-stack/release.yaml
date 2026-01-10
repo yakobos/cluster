@@ -20,7 +20,7 @@ spec:
   upgrade:
     crds: CreateReplace
   driftDetection:
-    mode: enable
+    mode: enabled
     ignore:
       # Ignore "validated" annotation which is not inserted during install
       - paths: ["/metadata/annotations/prometheus-operator-validated"]
