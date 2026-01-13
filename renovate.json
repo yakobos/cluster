@@ -1,0 +1,8 @@
+{
+	"$schema": "http://docs.renovatebot.com/renovate-schema.json",
+	"kubernetes": {
+		"fileMatch": [
+			"//.yaml$"
+		]
+	}
+}
