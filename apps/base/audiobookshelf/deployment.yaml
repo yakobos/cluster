@@ -26,19 +26,24 @@ spec:
           envFrom:
             - configMapRef:
                 name: audiobookshelf-configmap
-          restartPolicy: Always
-                #- secretRef:
-            #    name: linkding-container-env    
 
-          #securityContext:
-          #  allowPrivilegeEscalation: false
+          volumeMounts:
+            - mountPath: /config
+              name: audiobookshelf-config
+            - mountPath: /metadata
+              name: audiobookshelf-metadata
+            - mountPath: /audiobooks
+              name: audiobookshelf-audiobooks
 
+      restartPolicy: Always
 
-          #volumeMounts:
-          #  - name: linkding-data
-          #    mountPath: /etc/linkding/data
-
-      #volumes:
-      #  - name: linkding-data
-      #    persistentVolumeClaim:
-      #      claimName: linkding-data-pvc
+      volumes:
+        - name: audiobookshelf-config
+          persistentVolumeClaim:
+            claimName: audiobookshelf-config
+        - name: audiobookshelf-metadata
+          persistentVolumeClaim:
+            claimName: audiobookshelf-metadata
+        - name: audiobookshelf-audiobooks
+          persistentVolumeClaim:
+            claimName: audiobookshelf-audiobooks
