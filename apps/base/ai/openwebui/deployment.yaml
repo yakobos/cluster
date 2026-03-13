@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: openwebui
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: openwebui
+  template:
+    metadata:
+      labels:
+        app: openwebui
+    spec:
+      containers:
+      - name: openwebui
+        image: ghcr.io/open-webui/open-webui:main
+        ports:
+        - containerPort: 8080
+        env:
+        - name: OLLAMA_BASE_URL
+          value: "http://ollama.ai.svc.cluster.local:11434"
+        - name: ENABLE_RAG
+          value: "true"
+        - name: DEFAULT_MODEL
+          value: "qwen3.5:9b"
+        resources:
+          limits:
+            memory: "3Gi"
+            cpu: "2000m"
+          requests:
+            memory: "1Gi"
+            cpu: "200m"
+        volumeMounts:
+        - name: data
+          mountPath: /app/backend/data
+      volumes:
+      - name: data
+        persistentVolumeClaim:
+          claimName: openwebui-data
